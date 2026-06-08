@@ -1,0 +1,57 @@
+String command = "";
+
+void setup() {
+  pinMode(2, OUTPUT);  // Light
+  pinMode(3, OUTPUT);  // Fan
+  pinMode(4, OUTPUT);  // TV
+
+  Serial.begin(9600);
+
+  Serial.println("Speech Recognition System Ready");
+}
+
+void loop() {
+
+  if (Serial.available()) {
+
+    command = Serial.readStringUntil('\n');
+    command.trim();
+
+    // Light Control
+    if (command == "LIGHT ON") {
+      digitalWrite(2, HIGH);
+      Serial.println("Light ON");
+    }
+
+    else if (command == "LIGHT OFF") {
+      digitalWrite(2, LOW);
+      Serial.println("Light OFF");
+    }
+
+    // Fan Control
+    else if (command == "FAN ON") {
+      digitalWrite(3, HIGH);
+      Serial.println("Fan ON");
+    }
+
+    else if (command == "FAN OFF") {
+      digitalWrite(3, LOW);
+      Serial.println("Fan OFF");
+    }
+
+    // TV Control
+    else if (command == "TV ON") {
+      digitalWrite(4, HIGH);
+      Serial.println("TV ON");
+    }
+
+    else if (command == "TV OFF") {
+      digitalWrite(4, LOW);
+      Serial.println("TV OFF");
+    }
+
+    else {
+      Serial.println("Unknown Command");
+    }
+  }
+}
