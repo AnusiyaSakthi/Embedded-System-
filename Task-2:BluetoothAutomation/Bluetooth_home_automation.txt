@@ -1,0 +1,75 @@
+int light = 2;
+int fan = 3;
+int tv = 4;
+int pump = 5;
+
+void setup() {
+
+  pinMode(light, OUTPUT);
+  pinMode(fan, OUTPUT);
+  pinMode(tv, OUTPUT);
+  pinMode(pump, OUTPUT);
+
+  Serial.begin(9600);
+
+  Serial.println("SMART HOME AUTOMATION");
+  Serial.println("A - Light ON");
+  Serial.println("a - Light OFF");
+  Serial.println("B - Fan ON");
+  Serial.println("b - Fan OFF");
+  Serial.println("C - TV ON");
+  Serial.println("c - TV OFF");
+  Serial.println("D - Pump ON");
+  Serial.println("d - Pump OFF");
+}
+
+void loop() {
+
+  if (Serial.available() > 0) {
+
+    char cmd = Serial.read();
+
+    switch (cmd) {
+
+      case 'A':
+        digitalWrite(light, HIGH);
+        Serial.println("Light ON");
+        break;
+
+      case 'a':
+        digitalWrite(light, LOW);
+        Serial.println("Light OFF");
+        break;
+
+      case 'B':
+        digitalWrite(fan, HIGH);
+        Serial.println("Fan ON");
+        break;
+
+      case 'b':
+        digitalWrite(fan, LOW);
+        Serial.println("Fan OFF");
+        break;
+
+      case 'C':
+        digitalWrite(tv, HIGH);
+        Serial.println("TV ON");
+        break;
+
+      case 'c':
+        digitalWrite(tv, LOW);
+        Serial.println("TV OFF");
+        break;
+
+      case 'D':
+        digitalWrite(pump, HIGH);
+        Serial.println("Pump ON");
+        break;
+
+      case 'd':
+        digitalWrite(pump, LOW);
+        Serial.println("Pump OFF");
+        break;
+    }
+  }
+}
